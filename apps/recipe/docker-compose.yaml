@@ -1,0 +1,20 @@
+services:
+  recipe-db:
+    image: postgres:16.2
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'recipe'
+    ports:
+      - '5432:5432'
+    networks:
+      - recipe-net
+    healthcheck:
+      test: pg_isready -U postgres -d recipe
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+networks:
+  recipe-net:
+    driver: bridge

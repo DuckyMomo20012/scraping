@@ -1,0 +1,35 @@
+{
+  "name": "recipe",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:prod": "prisma migrate deploy",
+    "prisma:reset": "prisma migrate reset",
+    "prisma:studio": "prisma studio"
+  },
+  "devDependencies": {
+    "@types/async-retry": "1.4.8",
+    "@types/lodash": "4.17.4",
+    "prisma": "5.14.0"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-playwright": "1.27.3",
+    "@prisma/client": "5.14.0",
+    "async-retry": "1.3.3",
+    "dotenv": "16.4.5",
+    "hast-util-to-html": "9.0.1",
+    "lodash": "4.17.21",
+    "playwright": "1.44.0",
+    "rehype-parse": "9.0.0",
+    "rehype-remark": "10.0.0",
+    "rehype-sanitize": "6.0.0",
+    "remark-stringify": "11.0.0",
+    "unified": "11.0.5",
+    "unist-util-is": "6.0.0",
+    "unist-util-visit": "5.0.0",
+    "winston": "3.13.0"
+  }
+}

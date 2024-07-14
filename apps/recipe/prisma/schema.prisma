@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model Recipe {
+  id            String   @id @default(dbgenerated("gen_random_uuid()"))
+  name          String   @unique
+  description   String
+  ingredients   String
+  pretreatments String
+  instructions  String
+  usage         String
+  tips          String
+  createdAt     DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime @default(now()) @db.Timestamptz(3)
+
+  metadata RecipeMetadata?
+  tags     RecipeTag[]
+
+  @@map("recipe")
+}
+
+model RecipeMetadata {
+  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  ration    String
+  duration  String
+  level     String
+  nutrient  String?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String @unique
+
+  @@map("recipe_metadata")
+}
+
+model Tag {
+  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  slug      String   @unique
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+
+  recipes RecipeTag[]
+
+  @@map("tag")
+}
+
+model RecipeTag {
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @default(now()) @db.Timestamptz(3)
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String
+  tag      Tag    @relation(fields: [tagId], references: [id])
+  tagId    String
+
+  @@id([recipeId, tagId])
+  @@map("recipe_tag")
+}
