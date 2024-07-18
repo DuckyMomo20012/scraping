@@ -138,9 +138,6 @@ const getRecipe = async (url: string) => {
 
   await prisma.recipeMetadata.upsert({
     where: {
-      ration: ration || '',
-      duration: duration || '',
-      level: level || '',
       recipeId: recipe.id,
     },
     create: {
