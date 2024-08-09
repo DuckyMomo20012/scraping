@@ -1,3 +1,9 @@
+> [!NOTE]
+>
+> _This project has moved to new repo named
+> [v-bible/bible-scraper](https://github.com/v-bible/bible-scraper), any new
+> changes will be made there._
+
 <div align="center">
 
   <h1>Scraping bible</h1>
